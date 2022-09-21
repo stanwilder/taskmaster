@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //1. get an UI element by id
-        Button submitBttn = MainActivity.this.findViewById(R.id.mainActivityAddTaskButton);
+        Button submitBttn = MainActivity.this.findViewById(R.id.submitButton);
 
         //2. add an event listener
         submitBttn.setOnClickListener(new View.OnClickListener() {
@@ -34,16 +34,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        Button orderFormButtn = MainActivity.this.findViewById(R.id.mainActivityToOrderFormBttn);
-        // setting up routing logic with intents. Intents are the highway between activities
-        // send you along with data
-        orderFormButtn.setOnClickListener(view -> {
-            // set up the intent (Current context.this, class to go to Class.class)
-            Intent goToOrderFormActivity = new Intent(MainActivity.this, AddTask.class);
-            // Launch the intent
-            startActivity(goToOrderFormActivity);
-        });
-
+        mainActivityButton1();
     }
+
+        private void mainActivityButton1() {
+            Button taskTwoButton = MainActivity.this.findViewById(R.id.mainActivityButton1);
+
+            taskTwoButton.setOnClickListener(view -> {
+                Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
+                startActivity(goToTaskDetailPage);
+            });
+        }
 }
