@@ -23,52 +23,60 @@
         android:layout_width="236dp"
         android:layout_height="232dp"
         android:layout_marginStart="87dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="88dp"
         android:text="Body"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="115dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="16dp"
         android:text="Submit"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="656dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainActivitybutton2" />
 
     <Button
         android:id="@+id/mainActivityButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="499dp"
-        android:layout_marginEnd="299dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="179dp"
         android:text="Task 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/mainActivitybutton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginTop="499dp"
-        android:layout_marginEnd="167dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="8dp"
         android:text="Task 2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/mainActivitybutton3"
+        app:layout_constraintStart_toEndOf="@+id/mainActivityButton1"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/mainActivitybutton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="179dp"
         android:text="Task 3"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="293dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mainActivitybutton2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

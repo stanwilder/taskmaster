@@ -3,46 +3,65 @@ package com.stanley.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //1. get an UI element by id
-        Button submitBttn = MainActivity.this.findViewById(R.id.submitButton);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        //2. add an event listener
-        submitBttn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //3. Call back fn() OnClick() -> do stuff
-                //4. do stuff in the callback fn()
-                System.out.println("ZORK WAS HERE");
-                Log.v("", "Very Verbose");
-                Log.d("", "Debugger");
-                Log.i("", "Information");
-                Log.w("", "Warning");
-                Log.e("", "Error");
-                Log.wtf("", "What a terrible failure");
 
-            }
-        });
         mainActivityButton1();
+        mainActivityButton2();
+        mainActivityButton3();
+//        mainActivitySettingsButton();
     }
 
-        private void mainActivityButton1() {
-            Button taskTwoButton = MainActivity.this.findViewById(R.id.mainActivityButton1);
 
-            taskTwoButton.setOnClickListener(view -> {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String userName = sharedPreferences.getString(SettingsPage.USER_NAME_TAG, "no username");
+        TextView editedUsername = findViewById(R.id.textView2);
+        editedUsername.setText(userName + "'s Tasks");
+    }
+    private void mainActivityButton1 () {
+            Button taskOneButton = MainActivity.this.findViewById(R.id.mainActivityButton1);
+
+            taskOneButton.setOnClickListener(view -> {
                 Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
+                String buttonText = ((Button)view).getText().toString();
+                goToTaskDetailPage.putExtra("taskButton", buttonText);
                 startActivity(goToTaskDetailPage);
             });
+            };
+    private void mainActivityButton2 () {
+        Button taskOneButton = MainActivity.this.findViewById(R.id.mainActivitybutton2);
+
+        taskOneButton.setOnClickListener(view -> {
+            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
+            String buttonText = ((Button)view).getText().toString();
+            goToTaskDetailPage.putExtra("taskButton", buttonText);
+            startActivity(goToTaskDetailPage);
+        });
+    };
+
+    private void mainActivityButton3 () {
+        Button taskOneButton = MainActivity.this.findViewById(R.id.mainActivitybutton3);
+
+        taskOneButton.setOnClickListener(view -> {
+            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
+            String buttonText = ((Button)view).getText().toString();
+            goToTaskDetailPage.putExtra("taskButton", buttonText);
+            startActivity(goToTaskDetailPage);
+        });
+    };
         }
-}
