@@ -1,4 +1,4 @@
-package com.stanley.taskmaster;
+package com.stanley.taskmaster.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.stanley.taskmaster.R;
 
 public class SettingsPage extends AppCompatActivity {
     SharedPreferences sharedPreferences;

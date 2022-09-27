@@ -1,4 +1,4 @@
-package com.stanley.taskmaster;
+package com.stanley.taskmaster.activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,11 +8,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.stanley.taskmaster.R;
+
 public class AddTask extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+
 
         Button taskSubmitButton = AddTask.this.findViewById(R.id.taskSubmitButton);
         taskSubmitButton.setOnClickListener(new View.OnClickListener() {
