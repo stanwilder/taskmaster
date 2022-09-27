@@ -1,4 +1,4 @@
-package com.stanley.taskmaster;
+package com.stanley.taskmaster.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,12 +9,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
 
+import com.stanley.taskmaster.R;
+import com.stanley.taskmaster.adapter.RecyclerViewAdapter;
 import com.stanley.taskmaster.models.TaskModel;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String DATABASE_NAME = "task_master_db";
+    public static final String TASK_NAME_EXTRA_TAG = "taskName";
     SharedPreferences sharedPreferences;
 
     @Override
@@ -49,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         tasks.add(new TaskModel("task 1", "task", "assigned"));
         tasks.add(new TaskModel("task 2","task", "in progress"));
         tasks.add(new TaskModel("task 3", "task", "complete"));
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(tasks, this);
+        recyclerView.setAdapter(adapter);
     }
 
 

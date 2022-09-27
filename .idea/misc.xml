@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/layout/activity_add_task.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_all_task.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_frag_view.xml" value="0.33" />
         <entry key="app/src/main/res/layout/settings.xml" value="0.21" />
         <entry key="app/src/main/res/layout/task_details_page.xml" value="0.21" />
       </map>

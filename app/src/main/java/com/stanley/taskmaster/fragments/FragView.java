@@ -28,6 +28,7 @@ public class FragView extends Fragment {
         public void onCreate(Bundle saveState){
             super.onCreate(saveState);
         }
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveState){
             return inflater.inflate(R.layout.fragment_frag_view, container, false);
         }

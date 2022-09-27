@@ -1,16 +1,27 @@
 package com.stanley.taskmaster.models;
 
-public class TaskModel {
-    public String title;
-    public String body;
-    public String state;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-    public TaskModel(String title, String body, String state) {
+@Entity
+public class TaskModel {
+    @PrimaryKey(autoGenerate = true)
+    public Long id;
+
+    public String title;
+
+    public String body;
+    public StateEnum state;
+    public TaskModel(String title, String body, StateEnum state) {
         this.title = title;
         this.body = body;
         this.state = state;
+    }
+    public TaskModel(){}
 
-
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -29,11 +40,48 @@ public class TaskModel {
         this.body = body;
     }
 
-    public String getState() {
+    public StateEnum getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(StateEnum state) {
         this.state = state;
     }
+
+
+    public enum StateEnum {
+        NEW("new task"),
+        ASSIGNED("assigned"),
+        IN_PROGRESS("in progress"),
+        COMPLETED("completed");
+
+        public final String state;
+
+        StateEnum(String state){
+            this.state = state;
+        }
+
+        public String getState(){
+            return state;
+        }
+        public static StateEnum fromString(String stateOption){
+            for (StateEnum state : StateEnum.values()){
+                if(state.state.equals(stateOption)){
+                    return state;
+                }
+            }
+            return null;
+        }
+        @NonNull
+        @Override
+        public String toString(){
+            if(state == null){
+                return "Nothing Assigned";
+            }
+            return state;
+        }
+    }
+
+
 }
+
