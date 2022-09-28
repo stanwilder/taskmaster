@@ -1,12 +1,11 @@
 package com.stanley.taskmaster.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
+
+
 public class TaskModel {
-    @PrimaryKey(autoGenerate = true)
+
     public Long id;
 
     public String title;

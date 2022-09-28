@@ -30,10 +30,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewSetup();
 
 
-//        mainActivityButton1();
-//        mainActivityButton2();
-//        mainActivityButton3();
-//        mainActivitySettingsButton();
+
     }
 
 
@@ -51,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
         List<TaskModel> tasks = new ArrayList<>();
 
-        tasks.add(new TaskModel("task 1", "task", "assigned"));
-        tasks.add(new TaskModel("task 2","task", "in progress"));
-        tasks.add(new TaskModel("task 3", "task", "complete"));
+        tasks.add(new TaskModel("task 1", "task", TaskModel.StateEnum.NEW));
+        tasks.add(new TaskModel("task 2","task", TaskModel.StateEnum.IN_PROGRESS));
+        tasks.add(new TaskModel("task 3", "task", TaskModel.StateEnum.COMPLETED));
+        tasks.add(new TaskModel("task 4", "task", TaskModel.StateEnum.NEW));
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(tasks, this);
         recyclerView.setAdapter(adapter);
     }
@@ -62,37 +60,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    private void mainActivityButton1 () {
-//            Button mainActivityButton1 = MainActivity.this.findViewById(R.id.mainActivityButton1);
-//
-//        mainActivityButton1.setOnClickListener(view -> {
-//                Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
-//                String buttonText = ((Button)view).getText().toString();
-//                goToTaskDetailPage.putExtra("taskButton", buttonText);
-//                startActivity(goToTaskDetailPage);
-//            });
-//            }
-//    private void mainActivityButton2 () {
-//        Button mainActivityButton2 = MainActivity.this.findViewById(R.id.mainActivitybutton2);
-//
-//        mainActivityButton2.setOnClickListener(view -> {
-//            Intent goToTaskDetailsPage = new Intent(MainActivity.this, TaskDetailsPage.class);
-//            String buttonText = ((Button)view).getText().toString();
-//            goToTaskDetailsPage.putExtra("taskButton", buttonText);
-//            startActivity(goToTaskDetailsPage);
-//        });
-//    }
-//
-//    private void mainActivityButton3 () {
-//        Button mainActivityButton3 = MainActivity.this.findViewById(R.id.mainActivitybutton3);
-//
-//        mainActivityButton3.setOnClickListener(view -> {
-//            Intent goToTaskDetailPage = new Intent(MainActivity.this, TaskDetailsPage.class);
-//            String buttonText = ((Button)view).getText().toString();
-//            goToTaskDetailPage.putExtra("taskButton", buttonText);
-//            startActivity(goToTaskDetailPage);
-//        });
-//
-//    }
 
         }
