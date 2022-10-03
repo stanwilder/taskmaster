@@ -10,9 +10,11 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.stanley.taskmaster.R;
 import com.stanley.taskmaster.adapter.RecyclerViewAdapter;
 import com.stanley.taskmaster.models.TaskModel;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TASK_NAME_EXTRA_TAG = "taskName";
     public static final String Tag = "MainActivityTag";
     SharedPreferences sharedPreferences;
-    List<Task> taskList = null;
+    List<Task> taskList = new ArrayList<>();
     RecyclerViewAdapter adapter;
 
     @Override
@@ -35,7 +37,26 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         recyclerViewSetup();
 
-
+//        Team team1 = Team.builder().name("Team 1").build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(team1),
+//                success -> Log.i(Tag, "Team created successfully"),
+//                failure -> Log.i(Tag, "Team not created")
+//        );
+//        Team team2 = Team.builder().name("Team 2").build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(team2),
+//                success -> Log.i(Tag, "Team created successfully"),
+//                failure -> Log.i(Tag, "Team not created")
+//        );
+//        Team team3 = Team.builder().name("Team 3").build();
+//        Amplify.API.mutate(
+//                ModelMutation.create(team3),
+//                success -> Log.i(Tag, "Team created successfully"),
+//                failure -> Log.i(Tag, "Team not created")
+//        );
+//
+//
 
     }
 
@@ -67,9 +88,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layout);
 
-        List<TaskModel> tasks = new ArrayList<>();
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(tasks, this);
+        adapter = new RecyclerViewAdapter(taskList, this);
         recyclerView.setAdapter(adapter);
 
     }

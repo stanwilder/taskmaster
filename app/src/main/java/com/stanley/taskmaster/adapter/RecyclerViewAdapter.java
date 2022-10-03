@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amplifyframework.datastore.generated.model.Task;
 import com.stanley.taskmaster.R;
 import com.stanley.taskmaster.activities.MainActivity;
 import com.stanley.taskmaster.activities.TaskDetailsPage;
@@ -21,10 +22,10 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.FragViewHolder> {
 
-    List<TaskModel> data;
+    List<Task> data;
     Context callingActivity;
 
-    public RecyclerViewAdapter(List<TaskModel> data, Context callingActivity) {
+    public RecyclerViewAdapter(List<Task> data, Context callingActivity) {
         this.data = data;
         this.callingActivity = callingActivity;
     }
@@ -32,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @NonNull
     @Override
-    public RecyclerViewAdapter.FragViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FragViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View fragView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_frag_view, parent, false);
         return new FragViewHolder(fragView);
     }
