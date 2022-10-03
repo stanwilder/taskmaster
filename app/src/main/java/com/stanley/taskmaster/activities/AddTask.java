@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -12,17 +14,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.StateEnum;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.stanley.taskmaster.R;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class AddTask extends AppCompatActivity {
 
     public static final String Tag = "AddTaskActivity";
     Spinner taskSpinner = null;
+    Spinner taskTeamSpinner = null;
+    CompletableFuture<List<Team>> teamFuture = null;
     CompletableFuture<List<Task>> taskFuture = null;
 
     @Override
@@ -30,6 +37,8 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         setTaskSpinner();
+        setSubmitButton();
+        taskFuture = new CompletableFuture<>();
 
 
         Button taskSubmitButton = AddTask.this.findViewById(R.id.taskSubmitButton);
@@ -44,21 +53,62 @@ public class AddTask extends AppCompatActivity {
             }
         });
     }
-    private void setTaskSpinner(){
+
+    private void setTaskSpinner() {
+        ArrayList<String> teamNames = new ArrayList<>();
         Amplify.API.query(
-                ModelQuery.list(Task.class),
+                ModelQuery.list(Team.class),
                 success -> {
                     Log.i(Tag, "Read Tasks successfully");
-                    ArrayList<String> team = new ArrayList<>();
-                    ArrayList<Task> teams = new ArrayList<>();
-                    for(Task task : success.getData()){
-                        teams.add(task);
-                        team.add(teams.)
+
+                    ArrayList<Team> teams = new ArrayList<>();
+                    for (Team team : success.getData()) {
+                        teams.add(team);
                     }
-                });
-    },
-    failure -> {
-        taskFuture.complete(null);
-        Log.i(Tag, "Task not read successfully");
+                    teamFuture.complete(teams);
+                    runOnUiThread(() -> {
+                       for(Team team : teams){
+                           teamNames.add(team.getName());
+                       }
+                        taskSpinner.setAdapter(new ArrayAdapter<>(
+                                this,
+                                android.R.layout.simple_spinner_item,
+                                teamNames));
+                    });
+                    },
+                failure -> {
+                    teamFuture.complete(null);
+                    Log.i(Tag, "Did not read task successfully");
+                }
+
+        );
     }
+    private void setUpTeamSpinner(){
+        Spinner teamSpinner = findViewById(R.id.taskTeamspinner);
+        teamSpinner.setAdapter(new ArrayAdapter<>(
+                this,
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                StateEnum.values()
+        ));
+    }
+
+    private void setSubmitButton(){
+        String teamString = taskSpinner.getSelectedItem().toString();
+        List<Task> tasks = null;
+        try{
+            tasks = taskFuture.get();
+        } catch (InterruptedException ie){
+            Log.e(Tag, "Interrupted Exception while getting teams");
+            Thread.currentThread().interrupt();
+        } catch (ExecutionException ee){
+            Log.e(Tag, "ExecutionException while getting teams" + ee.getMessage());
+        }
+    }
+//        Team selectedTeam = teams.stream().filter(t -> t.getName().equals(selectedTeamString)).findAny().orElseThrow(RuntimeException::new);
+//    Spinner TaskTeamSpinner = findViewById(R.id.taskTeamspinner);
+//    Button saveNewTeamButton = findViewById(R.id.taskSubmitButton);
+//    saveNewTeamButton.setOnClickListener(view -> {
+//        String taskTitle = ((EditText) findViewById())
+//    })
 }
+
