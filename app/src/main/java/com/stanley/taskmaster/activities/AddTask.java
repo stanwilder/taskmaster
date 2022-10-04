@@ -1,17 +1,12 @@
 package com.stanley.taskmaster.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.StateEnum;
@@ -23,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+
 
 public class AddTask extends AppCompatActivity {
 
@@ -36,26 +32,17 @@ public class AddTask extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
-        setTaskSpinner();
-        setSubmitButton();
         taskFuture = new CompletableFuture<>();
+        teamFuture = new CompletableFuture<>();
+        setTaskSpinner();
+        setUpTeamSpinner();
+        setSubmitButton();
 
-
-        Button taskSubmitButton = AddTask.this.findViewById(R.id.taskSubmitButton);
-        taskSubmitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                CharSequence submittedText = "Submit Completed. Task added!";
-                Context submit = getApplicationContext();
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(submit, submittedText, duration);
-            }
-        });
     }
 
     private void setTaskSpinner() {
         ArrayList<String> teamNames = new ArrayList<>();
+        taskSpinner = findViewById(R.id.taskTeamspinner);
         Amplify.API.query(
                 ModelQuery.list(Team.class),
                 success -> {
@@ -84,8 +71,8 @@ public class AddTask extends AppCompatActivity {
         );
     }
     private void setUpTeamSpinner(){
-        Spinner teamSpinner = findViewById(R.id.taskTeamspinner);
-        teamSpinner.setAdapter(new ArrayAdapter<>(
+        taskTeamSpinner = findViewById(R.id.taskTeamspinner);
+        taskTeamSpinner.setAdapter(new ArrayAdapter<>(
                 this,
                 androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
                 StateEnum.values()
@@ -104,11 +91,11 @@ public class AddTask extends AppCompatActivity {
             Log.e(Tag, "ExecutionException while getting teams" + ee.getMessage());
         }
     }
-//        Team selectedTeam = teams.stream().filter(t -> t.getName().equals(selectedTeamString)).findAny().orElseThrow(RuntimeException::new);
-//    Spinner TaskTeamSpinner = findViewById(R.id.taskTeamspinner);
-//    Button saveNewTeamButton = findViewById(R.id.taskSubmitButton);
-//    saveNewTeamButton.setOnClickListener(view -> {
-//        String taskTitle = ((EditText) findViewById())
-//    })
+        Team selectedTeam = teams.stream().filter(t -> t.getName().equals(selectedTeamString)).findAny().orElseThrow(RuntimeException::new);
+    Spinner TaskTeamSpinner = findViewById(R.id.taskTeamspinner);
+    Button saveNewTeamButton = findViewById(R.id.taskSubmitButton);
+    saveNewTeamButton.setOnClickListener(view -> {
+        String taskTitle = ((EditText) findViewById())
+    })
 }
 

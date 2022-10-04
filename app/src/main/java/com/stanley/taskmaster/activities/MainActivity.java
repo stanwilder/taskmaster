@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         recyclerViewSetup();
+        setUpAddTaskBttn();
 
 //        Team team1 = Team.builder().name("Team 1").build();
 //        Amplify.API.mutate(
@@ -92,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         adapter = new RecyclerViewAdapter(taskList, this);
         recyclerView.setAdapter(adapter);
 
+    }
+    private void setUpAddTaskBttn(){
+        findViewById(R.id.addTaskButton).setOnClickListener(view -> {
+            Intent goToAddTaskPage = new Intent(MainActivity.this, AddTask.class);
+            startActivity(goToAddTaskPage);
+        });
     }
 }
 //  tasks.add(new TaskModel("task 1", "task", TaskModel.StateEnum.NEW));
