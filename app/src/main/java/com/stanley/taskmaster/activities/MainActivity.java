@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         recyclerViewSetup();
         setUpAddTaskBttn();
+        setSettingsButton();
 
 //        Team team1 = Team.builder().name("Team 1").build();
 //        Amplify.API.mutate(
@@ -87,10 +89,7 @@ public class MainActivity extends AppCompatActivity {
     private void recyclerViewSetup(){
         RecyclerView recyclerView = findViewById(R.id.mainRecyclerView);
         RecyclerView.LayoutManager layout = new LinearLayoutManager(this);
-
         recyclerView.setLayoutManager(layout);
-
-
         adapter = new RecyclerViewAdapter(taskList, this);
         recyclerView.setAdapter(adapter);
 
@@ -99,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.addTaskButton).setOnClickListener(view -> {
             Intent goToAddTaskPage = new Intent(MainActivity.this, AddTask.class);
             startActivity(goToAddTaskPage);
+        });
+    }
+    private void setSettingsButton(){
+        findViewById(R.id.settingButton).setOnClickListener(view -> {
+            Intent goToSettingsPage = new Intent(MainActivity.this, SettingsPage.class);
+            startActivity(goToSettingsPage);
         });
     }
 }
