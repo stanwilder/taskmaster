@@ -15,6 +15,7 @@
         android:layout_marginEnd="153dp"
         android:text="Taskmaster"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +23,7 @@
         android:id="@+id/textView2"
         android:layout_width="236dp"
         android:layout_height="232dp"
-        android:layout_marginStart="87dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="88dp"
         android:text="Body"
@@ -35,12 +36,13 @@
         android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="18dp"
         android:layout_marginBottom="16dp"
         android:text="Add Task"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView"
-        tools:layout_editor_absoluteX="19dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRecyclerView"
@@ -65,5 +67,25 @@
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toEndOf="@+id/addTaskButton"
         app:layout_constraintTop_toBottomOf="@+id/mainRecyclerView" />
+
+    <Button
+        android:id="@+id/SignUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign  up"
+        app:layout_constraintEnd_toStartOf="@+id/LoginButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/SignUpButton"
+        tools:layout_editor_absoluteY="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
